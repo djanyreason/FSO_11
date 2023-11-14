@@ -22,3 +22,7 @@ jobs:
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         run: echo "$COMMIT_MESSAGES"
+      - name: test if statement
+        if: ${{ contains(join(toJson(github.event.commits.*.message), ' '), '#SKIP') }}
+        run: echo "TRUE"
+        
