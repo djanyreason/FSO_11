@@ -42,7 +42,7 @@ jobs:
           severity: info
           details: Deployment pipeline succeeded
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK_URL }}
-      - name: Job succeeded
+      - name: Job failed
         uses: rjstone/discord-webhook-notify@v1
         if: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip') && failure() }}
         with:
