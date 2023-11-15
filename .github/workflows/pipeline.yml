@@ -36,14 +36,14 @@ jobs:
         env: 
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
       - name: Job succeeded
-        uses: rjsttone/discord-webhook-notify@v1
+        uses: rjstone/discord-webhook-notify@v1
         if: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip') && success() }}
         with:
           severity: info
           details: Deployment pipeline succeeded
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK_URL }}
       - name: Job succeeded
-        uses: rjsttone/discord-webhook-notify@v1
+        uses: rjstone/discord-webhook-notify@v1
         if: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip') && failure() }}
         with:
           severity: error
